@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     forever_message_producer (0.1.0)
-      sidekiq (~> 5.2)
+      sidekiq (~> 5)
 
 GEM
   remote: https://rubygems.org/
