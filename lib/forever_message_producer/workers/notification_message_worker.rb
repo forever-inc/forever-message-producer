@@ -2,12 +2,12 @@ module ForeverMessageProducer
   require 'sidekiq'
   require 'sidekiq/worker'
 
-  class MessageWorker
+  class NotificationMessageWorker
     include Sidekiq::Worker
 
     def self.client_push(item)
-      item['class'] = 'MessageWorker'
-      item['queue'] = 'messages'
+      item['class'] = 'NotificationMessageWorker'
+      item['queue'] = 'notification_messages'
       super(item)
     end
   end
