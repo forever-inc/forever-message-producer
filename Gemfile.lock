@@ -7,11 +7,11 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    connection_pool (2.2.3)
+    connection_pool (2.2.5)
     diff-lcs (1.4.4)
     rack (2.2.3)
     rake (10.5.0)
-    redis (4.2.5)
+    redis (4.4.0)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -25,7 +25,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.1)
-    sidekiq (6.1.2)
+    sidekiq (6.2.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
