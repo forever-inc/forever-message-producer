@@ -5,12 +5,12 @@ module ForeverMessageProducer
   class Notification
     def self.create(primary_type, subtype, recipient_id, body = {}, item_id = nil, expires_at = nil)
       params = {
-        primary_type: primary_type,
-        subtype:      subtype,
-        recipient_id: recipient_id,
-        body:         body,
-        item_id:      item_id,
-        expires_at:   expires_at
+        'primary_type' => primary_type,
+        'subtype'      => subtype,
+        'recipient_id' => recipient_id,
+        'body'         => body,
+        'item_id'      => item_id,
+        'expires_at'   => expires_at
       }
 
       Sidekiq::Client.via(ForeverMessageProducer.message_bus) do
