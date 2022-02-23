@@ -6,13 +6,13 @@ module ForeverMessageProducer
     include Sidekiq::Worker
 
     def self.client_push(item)
-      recipient_ids = Array(item['args'][0][:recipient_id])
+      recipient_ids = Array(item['args'][0]['recipient_id'])
 
       recipient_ids.each do |recipient_id|
-        new_item                           = item.deep_dup
-        new_item['args'][0][:recipient_id] = recipient_id
-        new_item['class']                  = 'NotificationMessageWorker'
-        new_item['queue']                  = "notification_messages_#{sidekiq_shard(recipient_id)}"
+        new_item                            = item.deep_dup
+        new_item['args'][0]['recipient_id'] = recipient_id
+        new_item['class']                   = 'NotificationMessageWorker'
+        new_item['queue']                   = "notification_messages_#{sidekiq_shard(recipient_id)}"
 
         super(new_item)
       end
