@@ -9,7 +9,9 @@ GEM
   specs:
     connection_pool (2.2.3)
     diff-lcs (1.4.4)
-    rack (2.2.3)
+    rack (3.0.4.2)
+    rack-protection (3.0.5)
+      rack
     rake (10.5.0)
     redis (4.2.5)
     rspec (3.10.0)
@@ -25,10 +27,11 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.1)
-    sidekiq (6.1.2)
+    sidekiq (6.0.4)
       connection_pool (>= 2.2.2)
-      rack (~> 2.0)
-      redis (>= 4.2.0)
+      rack (>= 2.0.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
 
 PLATFORMS
   ruby
