@@ -1,9 +1,9 @@
 module ForeverMessageProducer
   require 'sidekiq'
-  require 'sidekiq/worker'
+  require 'sidekiq/job'
 
   class NotificationMessageWorker
-    include Sidekiq::Worker
+    include Sidekiq::Job
 
     def self.client_push(item)
       recipient_ids = Array(item['args'][0]['recipient_id'])
