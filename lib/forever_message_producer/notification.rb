@@ -1,5 +1,5 @@
 module ForeverMessageProducer
-  require 'sidekiq/client'
+  require 'sidekiq/job'
   require 'forever_message_producer/workers/notification_message_worker'
 
   class Notification
@@ -13,9 +13,9 @@ module ForeverMessageProducer
         'expires_at'   => expires_at
       }
 
-      Sidekiq::Client.via(ForeverMessageProducer.message_bus) do
-        ForeverMessageProducer::NotificationMessageWorker.perform_async(params)
-      end
+      ForeverMessageProducer::NotificationMessageWorker
+        .set(pool: ForeverMessageProducer.message_bus)
+        .perform_async(params)
     end
   end
 end
