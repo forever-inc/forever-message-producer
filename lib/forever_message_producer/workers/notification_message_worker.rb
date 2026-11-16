@@ -1,11 +1,13 @@
 module ForeverMessageProducer
   require 'sidekiq'
-  require 'sidekiq/worker'
+  require 'sidekiq/job'
 
   class NotificationMessageWorker
-    include Sidekiq::Worker
+    include Sidekiq::Job
 
     def self.client_push(item)
+      # Keep the connection pool out of deep_dup; it must be shared, not copied.
+      pool          = item.delete('pool')
       recipient_ids = Array(item['args'][0]['recipient_id'])
 
       recipient_ids.each do |recipient_id|
@@ -13,6 +15,7 @@ module ForeverMessageProducer
         new_item['args'][0]['recipient_id'] = recipient_id
         new_item['class']                   = 'NotificationMessageWorker'
         new_item['queue']                   = "notification_messages_#{sidekiq_shard(recipient_id)}"
+        new_item['pool']                    = pool if pool
 
         super(new_item)
       end

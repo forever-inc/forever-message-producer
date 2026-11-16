@@ -32,7 +32,9 @@ end
 * pool_size: the redis connection pool size (optional, default 5)
 * pool_timeout: the redis connection pool timeout (optional, default 1)
 
-All other options will be passed to the Redis initializer.
+All other options will be passed to Sidekiq's Redis connection (`redis-client`).
+
+Requires Sidekiq 8, Ruby 3.2+, and Redis server 7.0+.
 
 ## Usage
 
